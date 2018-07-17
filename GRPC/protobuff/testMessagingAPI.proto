@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package testMessagingAPI;
+
+// The TestMessaging service definition.
+service TestMessaging {
+  // Sends a testMessage
+  rpc testRPC (TestRequest) returns (TestReply) {}
+}
+
+// The request message containing the user's name.
+message TestRequest {
+  string name = 1;
+}
+
+// The response message 
+message TestReply {
+  string message = 1;
+}
