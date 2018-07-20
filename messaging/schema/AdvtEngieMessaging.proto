@@ -1,0 +1,21 @@
+//To generate go gode : protoc *.proto --go_out=plugins=grpc:./
+
+syntax = "proto3";
+
+package AdvtEngnieMessaging;
+
+// The AdvtEngineMessaging service definition.
+service AdvtEngineMessaging {
+  // Sends a testMessage
+  rpc TestRPC (Request) returns (Reply) {}
+}
+
+// The request message containing the user's name.
+message Request {
+  string name = 1;
+}
+
+// The response message 
+message Reply {
+  string message = 1;
+}

@@ -18,7 +18,7 @@ func (conf *IniConfig) SetConfig(confFileName string, logLevel int16) error {
 		return err
 	}
 
-	testConf1, err := strconv.ParseInt(confFile.GetKey("General.GetTestConf1"), 10, 16)
+	testConf1, err := strconv.ParseInt(confFile.GetKey("General.TestConf1"), 10, 16)
 
 	if err != nil {
 		log.Println(err)
