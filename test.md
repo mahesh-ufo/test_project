@@ -21,15 +21,15 @@ KDM xml files, SPL xml files and DCPs are the assets. These xml files are mainta
 1. It is introduced in the system to enable faster access to the Assets stored on the disk. This will provide the APIs to store/retrieve the assets and auxiliary-data to/from system.
 2. To avoid rebuilding the new cache at every start of service, This cache is persisted on the disk using DBMS(like sqlite).
 3. Cache can be rebuilt at any point from the available data in the storage. Cache rebuild might be required in scenarios like software upgrade where older cache format is changed. 
-4. If Auxiliary-data is corrupted or becomes invalid, then it is ignored during cache rebuild (loss of auxiliary data).
+4. If auxiliary-data is corrupted or becomes invalid, then it is ignored during cache rebuild (loss of auxiliary data).
 		
 ### Task manager
 1. Task manager gets/stores the assets and auxiliary-data using asset cache.
 2. Task manager provides
-   1. Interface(APIs) for asset management operations.
-       * Ingest of CPL/SPL/DCP.
+   1. Interface(APIs) for asset management tasks/operations.
+       * Ingest of CPL/SPL/DCP. 
        * Deletion of CPL/SPL/DCP.
-       * Get the status of the ongoing asset management operations.
+       * Get the status of the ongoing asset management tasks/operations.
        * List the Assets and details of particular asset.	
    2. Interface(APIs) for controlling asset management operations (stop the allowing new ingest , etc)   	
    3. Auto delete functionality for CPL/SPL/DCP according to the business rules.
