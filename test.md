@@ -6,10 +6,10 @@ Asset manager is responsible for the managing the DCP/KDM/SPL on the SMS. It is 
 It store/retrieve the asset manger data on the disk. At high level data is devided in two types.
 
 1. **Assets**  
-		KDM xml files, SPL xml files and DCPs are the assets. These xml files are maintained in a directory structure as defined below. 
-       * **kdm** :  Directory to keep kdm xml files on the SMS
-       * **spl** : Directory to keep spl xml files on the SMS
-       * **dcp** : Directory to keep DCPs on the SMS. Under this directory,  several directories will be created for each DCP, one directory will map to one DCP.   These directories keeps the PKL, CPL, asset-map and mxf files.	            
+KDM xml files, SPL xml files and DCPs are the assets. These xml files are maintained in a directory structure as defined below.
+   * **kdm** :  Directory to keep kdm xml files on the SMS
+   * **spl** : Directory to keep spl xml files on the SMS
+   * **dcp** : Directory to keep DCPs on the SMS. Under this directory,  several directories will be created for each DCP, one directory will map to one DCP.   These directories keeps the PKL, CPL, asset-map and mxf files.	            
 	      
             
 
@@ -43,9 +43,9 @@ Different components of the asset manager (like task manager, asset cache) will 
 
 ### Messaging:
 
-Asset manager communicates with the external world with messaging layer. It  have the components to
+Asset manager communicates with the external world with messaging layer. It  have follwing components
      
-1. Handle the messages from external world. When ever it receives any message, it will call  appropriate APIs of the task manager. Depending on the API data, it will construct the response message and send it back to the peer. 
-2. Send notifications to the to subscribers.
+1. **Message/API call/Request-Response** : Handle the messages from external world. When ever it receives any message, it will call  appropriate APIs of the task manager. Depending on the API data, it will construct the response message and send it back to the peer. 
+2. **Notification** :
    Mechanism to publish the notifications to external world. Who ever want to get the notification need the subscribe it. It will receive notification from notification relay and forward it to subscriber.
      
