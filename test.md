@@ -26,6 +26,7 @@ This will provide the APIs to store/retrieve/access the assets and DB. It provid
 
 ### Task manager
 The Task manager manages the scheduling of tasks based on their categories, types and priorities. It will decide which tasks can run in parallel or cannot run due to external triggers(restrictions). It will persist its task queue to the data store.
+
 e.g. A playback trigger may prevent ingest tasks from running.
 
 #### Task
