@@ -27,14 +27,15 @@ e.g. A playback trigger may prevent ingest tasks from running
 #### Task
 Tasks are defined as the entities that will implement the functionality defined by the API.
 Tasks would include:
-	* SPL/KDM/DCP Ingest
-	* Fetch Ingest queue
-	* Suspend/Resume/Delete ingest
-	* Fetch SPL/KDM/DCP List
-	* Fetch SPL/KDM/DCP info
-	* Delete SPL/KDM/DCP
-	* Asset auto deletion 
-	...etc  
+
+  * SPL/KDM/DCP Ingest
+  * Fetch Ingest queue
+  * Suspend/Resume/Delete ingest
+  * Fetch SPL/KDM/DCP List
+  * Fetch SPL/KDM/DCP info
+  * Delete SPL/KDM/DCP
+  * Asset auto deletion 
+  * ...etc  
 
 ### Notification relay
 Different components of the asset manager (like task manager, asset cache) will call notification relay API to generate the notifications. These notification will be forwarded the the registered handler. Notifications handler would be
