@@ -16,13 +16,25 @@ KDM, SPL and DCPs are the assets. This is maintained in a directory structure as
 
    * *Auxiliary-data*  
       Data which need to  persist across several life cycles of the service. This information would be generated during processing different request.
+      
+      e.g. 
+      * Ingest status information
+      * Protect the CPL from GC
+      * ....
+      
    * *Asset cache*  
-      It is introduced in the system to enable faster access to the assets stored on the disk.       
-
+     It will keep the part of the information in the assets files on the disk . It is introduced in the system to enable faster access to the assets information.
+     
+     e.g.
+     * KDM information
+     * CPL information 
+     * ....
+     
+     
    DB can be rebuilt at any point from the available assets in the storage. DB rebuild/upgrade might be required in scenarios like software upgrade where older DB format is changed. If auxiliary-data becomes invalid or unusable, then it is ignored during DB rebuild (loss of auxiliary-data in DB).
 
 ### Asset store
-This will provide the APIs to store/retrieve/access the assets and DB. It provides storage abstraction layer to other components in asset manager.
+This will provide the APIs to other components in asset manager to store/retrieve/access the assets and DB. It provides storage abstraction layer.
 
 ### Task manager
 The Task manager manages the scheduling of tasks based on their categories, types and priorities. It will decide which tasks can run in parallel or cannot run due to external triggers(restrictions). It will persist its task queue to the data store.
