@@ -3,26 +3,30 @@
 Asset manager is responsible for the managing the DCP/KDM/SPL on the SMS. It is divided in to different components as mentioned below.
 
 ### Storage
-It store/retrieve the asset manger data on the disk. At high level data is devided in two types.
+It store the asset manger data on the disk. At high level data is divided in two types.
 
 1. **Assets**  
-KDM xml files, SPL xml files and DCPs are the assets. These xml files are maintained in a directory structure as defined below.
-   * **kdm** :  Directory to keep kdm xml files on the SMS
-   * **spl** : Directory to keep spl xml files on the SMS
-   * **dcp** : Directory to keep DCPs on the SMS. Under this directory,  several directories will be created for each DCP, one directory will map to one DCP.   These directories keeps the PKL, CPL, asset-map and mxf files.	            	    
-            
-2. **Auxiliary-data**  
-      Data which need to  persist across several life cycles of the service. This information would be generated during processing different request. Any DBMS(like sqlite) can be used to maintain this information.
-	 
-### Asset cache
-1. It is introduced in the system to enable faster access to the Assets stored on the disk. This will provide the APIs to store/retrieve the assets and auxiliary-data to/from system.
-2. To avoid rebuilding the new cache at every start of service, this cache is persisted on the disk using DB(like sqlite).
-3. Cache can be rebuilt at any point from the available data in the storage. Cache rebuild might be required in scenarios like software upgrade where older cache format is changed. 
-4. If auxiliary-data is corrupted or becomes invalid, then it is ignored during cache rebuild (loss of auxiliary data).
-		
+KDM, SPL and DCPs are the assets. This is maintained in a directory structure as defined below.
+   * **kdm** :  Directory to keep kdm on the SMS
+   * **spl** : Directory to keep spl on the SMS
+   * **dcp** : Directory to keep DCPs on the SMS. Under this directory,  several directories will be created for each DCP, one directory will map to one DCP.   These directories keeps the PKL, CPL, asset-map and media files.	            	    
+2. **DB**
+
+   DB (sqlite) is mainly divided in to parts
+
+   * *Auxiliary-data*  
+      Data which need to  persist across several life cycles of the service. This information would be generated during processing different request.
+   * *Asset cache*  
+      It is introduced in the system to enable faster access to the assets stored on the disk.       
+
+   DB can be rebuilt at any point from the available assets in the storage. DB rebuild/upgrade might be required in scenarios like software upgrade where older DB format is changed. If auxiliary-data becomes invalid or unusable, then it is ignored during DB rebuild (loss of auxiliary-data in DB).
+
+### Asset store
+This will provide the APIs to store/retrieve/access the assets and DB. It provides storage abstraction layer to other components in asset manager.
+
 ### Task manager
-The Task manager manages the scheduling of tasks based on their categories, types and priorties. It will decide which tasks can run in parallel or cannot run due to external triggers. It will persist its task queue to the data store.
-e.g. A playback trigger may prevent ingest tasks from running
+The Task manager manages the scheduling of tasks based on their categories, types and priorities. It will decide which tasks can run in parallel or cannot run due to external triggers(restrictions). It will persist its task queue to the data store.
+e.g. A playback trigger may prevent ingest tasks from running.
 
 #### Task
 Tasks are defined as the entities that will implement the functionality defined by the API.
@@ -32,7 +36,7 @@ Tasks would include:
   * Fetch Ingest queue
   * Suspend/Resume/Delete ingest
   * Fetch SPL/KDM/DCP List
-  * Fetch SPL/KDM/DCP info
+  * Fetch SPL/KDM/DCP information
   * Delete SPL/KDM/DCP
   * Asset auto deletion 
   * ...etc  
